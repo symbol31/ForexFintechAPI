@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForexFintechAPI", "ForexFintechAPI.csproj", "{F301116A-8AD9-4957-A3DB-055B0C27077C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F301116A-8AD9-4957-A3DB-055B0C27077C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F301116A-8AD9-4957-A3DB-055B0C27077C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F301116A-8AD9-4957-A3DB-055B0C27077C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F301116A-8AD9-4957-A3DB-055B0C27077C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5A99F32-AB40-44C4-ACEE-F67FE8ED66E3}
+	EndGlobalSection
+EndGlobal
