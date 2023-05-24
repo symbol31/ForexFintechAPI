@@ -30,7 +30,7 @@ public static class ExceptionHandlerExtensions
                     var logger = loggerFactory.CreateLogger("UnhandledException");
                     var exception = exceptionHandlerFeature.Error;
 
-                    logger.LogError(exception, exception.StackTrace, exception.Message);
+                    logger.LogCritical(exception, exception.StackTrace, exception.Message);
 
                     var problemDetails = new ProblemDetails
                     {
@@ -39,7 +39,7 @@ public static class ExceptionHandlerExtensions
                         Detail = exception.Message + exception.StackTrace
                     };
 
-                    await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails));
+                    await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails.Title));
                 }
             });
         });

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 using System.Text;
@@ -108,16 +109,12 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
-//Log.Logger = new LoggerConfiguration()
-//    .MinimumLevel.Debug()
-//    .WriteTo.File(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt"), rollingInterval: RollingInterval.Day)
-//    .CreateLogger();
-
-//builder.Services.AddLogging(loggingBuilder =>
-//{
-//    loggingBuilder.ClearProviders();
-//    loggingBuilder.AddSerilog(Log.Logger);
-//});
+var logger = new LoggerConfiguration()
+                  .ReadFrom.Configuration(builder.Configuration)
+                  .Enrich.FromLogContext()
+                  .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -33,7 +33,7 @@ namespace IdentityAPI.Controllers
             return BadRequest(result.Errors);
         }
         [HttpPost("Login")]
-        [SwaggerOperation(Summary = "Log In User", Description = "Logging into the system using registered E-mail and Password ")]
+        [SwaggerOperation(Summary = "LogIn User", Description = "Logging into the system using registered E-mail and Password ")]
         [SwaggerResponse(200, Type = typeof(UserManagerResponse), ContentTypes = new[] { "application/json" })]
         [SwaggerResponse(400, Type = typeof(string), ContentTypes = new[] { "application/json" })]
         [SwaggerResponse(500, Type = typeof(string), ContentTypes = new[] { "application/json" })]
