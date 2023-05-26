@@ -45,8 +45,8 @@ namespace IdentityAPI.Controllers
             var result = await _userService.LoginUserAsync(model);
             if (result.IsSuccess)
                 return Ok(result);
-            _logger.LogError("Authentication Error: {Error}", result.Errors);
-            return BadRequest(result.Errors);
+            _logger.LogError("Authentication Error: {Error}", result.Message);
+            return BadRequest(result.Message);
         }
     }
 }
