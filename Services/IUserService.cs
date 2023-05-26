@@ -15,14 +15,12 @@ public interface IUserService
 public class UserService : IUserService
 {
     private UserManager<IdentityUser> _userManager;
-    private readonly ILogger<IdentityUser> _logger;
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly IConfiguration _config;
-    public UserService(UserManager<IdentityUser> userManager, IConfiguration config, ILogger<IdentityUser> logger, SignInManager<IdentityUser> signInManager)
+    public UserService(UserManager<IdentityUser> userManager, IConfiguration config, SignInManager<IdentityUser> signInManager)
     {
         _userManager = userManager;
         _config = config;
-        _logger = logger;
         _signInManager = signInManager;
     }
     public async Task<UserManagerResponse> RegisterUserAsync(RegisterDto model)

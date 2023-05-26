@@ -1,17 +1,9 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
 namespace ForexFintechAPI.Models;
 
-//public static class ExceptionHandlerExtensionMethod
-//{
-//    public static IApplicationBuilder ExceptionHandling(this IApplicationBuilder app)
-//    {
-//        return app.UseMiddleware<ExceptionHandlerMiddleware>();
-//    }
-//}
 public static class ExceptionHandlerExtensions
 {
     public static void ExceptionHandling(this IApplicationBuilder app)

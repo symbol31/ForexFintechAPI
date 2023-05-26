@@ -25,7 +25,7 @@ public class PartnerController : ControllerBase
     [SwaggerOperation(Summary = "Get's list of Partners from Core System",
                       Description = "Get list of Partners from existing core system using API")]
     [SwaggerResponse(200, Type = typeof(List<FetchedPartner>), ContentTypes = new[] { "application/json" })]
-    [SwaggerResponse(400,Type =typeof(string), ContentTypes = new[] { "application/json" })]
+    [SwaggerResponse(400, Type = typeof(string), ContentTypes = new[] { "application/json" })]
     [SwaggerResponse(500, Type = typeof(string), ContentTypes = new[] { "application/json" })]
     public async Task<IActionResult> GetPartner()
     {
@@ -38,7 +38,7 @@ public class PartnerController : ControllerBase
         var existingCountry = await _myContext.Countries.FirstOrDefaultAsync(c => country.Contains(c.Name));
         if (existingCountry == null)
         {
-             existingCountry = new Country
+            existingCountry = new Country
             {
                 Name = country
             };
@@ -69,7 +69,7 @@ public class PartnerController : ControllerBase
             var errorMessage = "Concurrency conflict detected for entity " + entry.Entity.GetType().Name;
             return BadRequest(errorMessage);
         }
-        catch(DbUpdateException ex)
+        catch (DbUpdateException ex)
         {
             var errorMessage = ex.InnerException.Message;
             return BadRequest(errorMessage);
@@ -82,7 +82,7 @@ public class PartnerController : ControllerBase
     [SwaggerOperation(Summary = "Add Partners to the System Manually", Description = "Add Partners to the System Manually who couldn't be fetched from core system or who are new")]
     [SwaggerResponse(200, Type = typeof(PartnerDto), ContentTypes = new[] { "application/json" })]
     [SwaggerResponse(500, Type = typeof(string), ContentTypes = new[] { "application/json" })]
-    public async Task<IActionResult> AddPartner([FromBody]PartnerDto partnerDto)
+    public async Task<IActionResult> AddPartner([FromBody] PartnerDto partnerDto)
     {
         var country = _myContext.Countries.Where(x => x.Name == partnerDto.Country).FirstOrDefault();
         if (country == null)
@@ -104,7 +104,7 @@ public class PartnerController : ControllerBase
         await _myContext.SaveChangesAsync();
         return Ok(partner);
     }
-    
+
     [HttpGet]
     [SwaggerOperation(Summary = "Get list of Partner in a Country",
                       Description = "Get list of Partners on the basis of the Country specified in the input")]
@@ -113,7 +113,7 @@ public class PartnerController : ControllerBase
     public IActionResult GetPartnerByCountry(string country)
     {
         var result = _myContext.Partners.Where(x => x.Country.Name == country).ToList();
-        
+
         List<PartnerDto> partnersInCountry = result.Select(p => new PartnerDto
         {
             PartnerCode = p.PartnerCode,

@@ -64,7 +64,6 @@ builder.Services.AddHttpClient();
 builder.Services.Configure<XEAPIConfiguration>(builder.Configuration.GetSection("XEAPIConfiguration"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(options =>
 {
     options.EnableAnnotations();
@@ -111,12 +110,6 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
-//var logger = new LoggerConfiguration()
-//                  .ReadFrom.Configuration(builder.Configuration)
-//                  .Enrich.FromLogContext()
-//                  .CreateLogger();
-//builder.Logging.ClearProviders();
-//builder.Logging.AddSerilog(logger);
 configureLogging();
 builder.Host.UseSerilog();
 var app = builder.Build();

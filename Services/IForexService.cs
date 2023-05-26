@@ -1,10 +1,7 @@
-﻿using ForexFintechAPI.Data;
-using ForexFintechAPI.Models;
+﻿using ForexFintechAPI.Models;
 using System.Text.Json;
 using System.Text;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace ForexFintechAPI.Services;
 
@@ -16,15 +13,12 @@ public interface IForexService
 public class ForexService : IForexService
 {
     private readonly HttpClient _httpclient;
-    private readonly MyContext _myContext;
     private readonly XEAPIConfiguration _XEAPIconfig;
 
     public ForexService( HttpClient client,
-                         MyContext myContext,
                          IOptions<XEAPIConfiguration> XEAPIconfig)
     {
         _httpclient = client;
-        _myContext = myContext;
         _XEAPIconfig = XEAPIconfig.Value;
     }
     public async Task<ExchangeRate> GetRateAsync(string fromCurrency, string toCurrency)
