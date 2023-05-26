@@ -137,9 +137,12 @@ using System.Linq;
 public class ValidationFilter : ActionFilterAttribute
 {
     private readonly IEnumerable<IValidator> _validators;
-    public ValidationFilter(IEnumerable<IValidator> validators)
+    private readonly ILogger<ValidationFilter> _logger;
+
+    public ValidationFilter(IEnumerable<IValidator> validators, ILogger<ValidationFilter> logger)
     {
         _validators = validators;
+        _logger = logger;
     }
     public override void OnActionExecuting(ActionExecutingContext context)
     {
@@ -157,6 +160,7 @@ public class ValidationFilter : ActionFilterAttribute
                     List<string> errorMessages = validationResult.Errors.Select(error => error.ErrorMessage)
                                                                         .ToList();
                     context.Result = new BadRequestObjectResult(errorMessages);
+                    _logger.LogError("Validation errors: {Errors}", errorMessages);
                     return;
                 }
             }

@@ -12,11 +12,13 @@ namespace IdentityAPI.Controllers
     {
         private IUserService _userService;
         private readonly RegisterDtoValidator _validator;
+        private ILogger<AuthController> _logger;
 
-        public AuthController(IUserService userService, RegisterDtoValidator validator)
+        public AuthController(IUserService userService, RegisterDtoValidator validator, ILogger<AuthController> logger)
         {
             _userService = userService;
             this._validator = validator;
+            _logger = logger;
         }
         [ServiceFilter(typeof(ValidationFilter))]
         [HttpPost("Register")]
@@ -30,6 +32,7 @@ namespace IdentityAPI.Controllers
             var result = await _userService.RegisterUserAsync(model);
             if (result.IsSuccess)
                 return Ok(result);
+            _logger.LogError("Authentication Error: {Error}", result.Errors);
             return BadRequest(result.Errors);
         }
         [HttpPost("Login")]
@@ -42,6 +45,7 @@ namespace IdentityAPI.Controllers
             var result = await _userService.LoginUserAsync(model);
             if (result.IsSuccess)
                 return Ok(result);
+            _logger.LogError("Authentication Error: {Error}", result.Errors);
             return BadRequest(result.Errors);
         }
     }

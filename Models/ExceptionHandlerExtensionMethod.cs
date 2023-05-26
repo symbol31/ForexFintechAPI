@@ -30,7 +30,7 @@ public static class ExceptionHandlerExtensions
                     var logger = loggerFactory.CreateLogger("UnhandledException");
                     var exception = exceptionHandlerFeature.Error;
 
-                    logger.LogCritical(exception, exception.StackTrace, exception.Message);
+                    logger.LogError(exception, exception.StackTrace, exception.Message);
 
                     var problemDetails = new ProblemDetails
                     {
